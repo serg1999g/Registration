@@ -1,0 +1,88 @@
+body{
+    background-color: ghostwhite;
+}
+
+.wrapper {
+    height: 500px;
+    width: 500px;
+    background-color: #bfbfbf52;
+    margin-top: 200px;
+    border-radius: 20px;
+}
+
+.wrap-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.content {
+    text-align: center;
+}
+
+.reg {
+    width: 250px;
+    height: 40px;
+    background-color: #469efd;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.reg:hover {
+    background-color: #2489f7;
+    transition: 0.2s;
+}
+
+.reg:not(:first-child) {
+    margin-top: 20px;
+}
+
+.reg a {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+p {
+    text-align: start;
+    width: 100%;
+    padding-left: 8px;
+}
+
+button {
+    background-color: #469efd;
+    border: transparent;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 10px 20px;
+    transition: 0.2s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2489f7;
+    transition: 0.2s;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: red;
+    text-transform: uppercase;
+}
+
+.successful-registration {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: green;
+    text-transform: uppercase;
+}
