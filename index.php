@@ -1,5 +1,5 @@
 <?php
-require "db.php";
+require "session.php";
 ?>
 
 
@@ -30,7 +30,6 @@ require "db.php";
                                         <?php if (isset($_SESSION['logged_user'])) : ?>
                                         Поздравляем, успешная авторизация!<br>
                                         <a href="/logout.php">Выход</a>
-
                                         <?php else : ?>
                                         <div class="sign-in reg">
                                             <a href="/login.php">Войти в систему</a>

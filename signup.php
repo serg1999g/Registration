@@ -1,5 +1,5 @@
 <?php
-require "db.php";
+require "session.php";
 
 $data = $_POST;
 if (isset($data['do_signup'])) {
@@ -15,6 +15,10 @@ if (isset($data['do_signup'])) {
     }
     if (R::count('users', "login = ?", array($data['login'])) > 0) {
         $errors[] = 'Пользователь с таким логином существует.';
+    }
+    if (trim($data['email']) == '') 
+    {
+        $errors[] = 'Введите Email';
     }
     if (R::count('users', "email = ?", array($data['email'])) > 0) {
         $errors[] = 'Пользователь с таким адресом электронной почты существует.';
@@ -57,22 +61,22 @@ if (isset($data['do_signup'])) {
                             <div class="wrap-content">
                                 <div class="content">
                                     <form action="/signup.php" method="POST">
-                                        <a href="/logout.php">Главная</a>
+                                    <a href="/index.php">главная</a>
                                         <p>
                                             <p>Email</p>
-                                            <input type="email" name="email" value="<?php echo @$data['email']; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                            <input type="email" name="email" value="<?php echo $data['email']; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                                         </p>
                                         <p>
                                             <p>Логин</p>
-                                            <input type="login" name="login" value="<?php echo @$data['login']; ?>" class="form-control" placeholder="Login">
+                                            <input type="login" name="login" value="<?php echo $data['login']; ?>" class="form-control" placeholder="Login">
                                         </p>
                                         <p>
                                             <p>Пароль</p>
-                                            <input type="password" name="password" value="<?php echo @$data['password']; ?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            <input type="password" name="password" value="<?php echo $data['password'] ;?>" class="form-control" id="exampleInputPassword" placeholder="Password">
                                         </p>
                                         <p>
                                             <p>Повторите пароль</p>
-                                            <input type="password" name="password_2" value="<?php echo @$data['password_2']; ?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            <input type="password" name="password_2" value="<?php echo $data['password_2'] ;?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                         </p>
                                         <button type="submit" name="do_signup">Cоздать учетную запись</button>
                                     </form>
@@ -87,4 +91,4 @@ if (isset($data['do_signup'])) {
 
 </body>
 
-</html> 
+</html>

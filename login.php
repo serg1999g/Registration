@@ -1,19 +1,22 @@
 <?php
-require "db.php";
+require "session.php";
 
 $data = $_POST;
 if (isset($data['do_login'])) {
     $user = R::findOne('users', 'login =?', array($data['login']));
     if ($user)
+    {
         if (password_verify($data['password'], $user->password)) {
             $_SESSION['logged_user'] = $user;
             echo '<div class="successful-registration">Поздравляю, вы авторизованы!</div><hr>';
-        } else {
+        } 
+        else {
             $errors[] = 'Введен неверный пароль';
-        } else {
+        } 
+    }
+    else {
         $errors[] = 'Пользователь с таким логином не существует';
     }
-
     if (!empty($errors)) {
         {
             echo '<div class="error">' . array_shift($errors) . '</div><hr>';
@@ -50,16 +53,16 @@ if (isset($data['do_login'])) {
                                     <form action="/login.php" method="POST">
                                         <?php if (isset($_SESSION['logged_user'])) : ?>
                                         Поздравляем, успешная авторизация!<br>
-                                        <a href="/logout.php">Главная</a>
+                                        <a href="/logout.php">Выход</a>
                                         <?php else : ?>
-                                        <a href="/logout.php">Главная</a>
+                                        <a href="/signup.php">Регистрация</a>
                                         <p>
                                             <p>Логин</p>
-                                            <input type="login" name="login" value="<?php echo @$data['login']; ?>" class="form-control" placeholder="Login">
+                                            <input type="login" name="login" value="<?php echo $data['login']; ?>" class="form-control" placeholder="Login">
                                         </p>
                                         <p>
                                             <p>Пароль</p>
-                                            <input type="password" name="password" value="<?php echo @$data['password']; ?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            <input type="password" name="password" value="<?php echo $data['password']; ?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                         </p>
                                         <button type="submit" name="do_login">Войти в систему</button>
                                         <?php endif; ?>
