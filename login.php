@@ -1,5 +1,5 @@
 <?php
-require "session.php";
+require_once "db.php";
 
 $data = $_POST;
 if (isset($data['do_login'])) {
